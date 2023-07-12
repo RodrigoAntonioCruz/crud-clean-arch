@@ -1,14 +1,13 @@
 <h3 align="center">
-  <img align="center" alt="Logo LUIZALABS"  height="120" src="https://raw.githubusercontent.com/RodrigoAntonioCruz/assets/main/luizalabs.png" /><br>
-  TESTE BACKEND LUIZALABS
+  <img align="center" alt="Logo"  height="120" src="https://helpdev.com.br/wp-content/uploads/2020/05/Screenshot-from-2020-05-20-23-29-10.png" /><br>
+  API REST CLEAN ARCH
 </h3>
 
 [![Build & test](https://github.com/RodrigoAntonioCruz/wishlist/actions/workflows/build.yml/badge.svg)](https://github.com/RodrigoAntonioCruz/wishlist/actions/workflows/build.yml) [![codecov](https://codecov.io/gh/RodrigoAntonioCruz/wishlist/branch/main/graph/badge.svg?token=MZC7NC3OZX)](https://codecov.io/gh/RodrigoAntonioCruz/wishlist)
 
-### Contexto do Teste
+### Contexto
 
-Desenvolver uma `API REST` com recursos de gerenciar os clientes, produtos, bem como a sua wishlist, ou a lista de desejos.
-
+Uma `API REST` com um CRUD desenvolvida no padrão Clean Architecture.
 
 <h4>Tecnologias</h4>
 <ul>
