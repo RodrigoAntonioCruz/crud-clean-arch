@@ -1,5 +1,5 @@
 <h3 align="center">
-  <img align="center" alt="Logo"  height="120" src="https://helpdev.com.br/wp-content/uploads/2020/05/Screenshot-from-2020-05-20-23-29-10.png" /><br>
+  <img align="center" alt="Logo"  height="350" src="https://helpdev.com.br/wp-content/uploads/2020/05/Screenshot-from-2020-05-20-23-29-10.png" /><br>
   API REST CLEAN ARCH
 </h3>
 
