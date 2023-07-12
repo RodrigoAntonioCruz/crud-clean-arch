@@ -1,6 +1,6 @@
 <h3 align="center">
-  <img align="center" alt="Logo"  height="350" src="https://helpdev.com.br/wp-content/uploads/2020/05/Screenshot-from-2020-05-20-23-29-10.png" /><br>
   API REST CLEAN ARCH
+  <img align="center" alt="Logo"  height="320" src="https://helpdev.com.br/wp-content/uploads/2020/05/Screenshot-from-2020-05-20-23-29-10.png" /><br>
 </h3>
 
 [![Build & test](https://github.com/RodrigoAntonioCruz/wishlist/actions/workflows/build.yml/badge.svg)](https://github.com/RodrigoAntonioCruz/wishlist/actions/workflows/build.yml) [![codecov](https://codecov.io/gh/RodrigoAntonioCruz/wishlist/branch/main/graph/badge.svg?token=MZC7NC3OZX)](https://codecov.io/gh/RodrigoAntonioCruz/wishlist)
