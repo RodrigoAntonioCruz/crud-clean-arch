@@ -7,7 +7,7 @@
 
 ### Contexto
 
-Uma `API REST` com um CRUD desenvolvida no padrão Clean Architecture.
+Uma `API REST` desenvolvida no padrão Clean Architecture.
 
 <h4>Tecnologias</h4>
 <ul>
