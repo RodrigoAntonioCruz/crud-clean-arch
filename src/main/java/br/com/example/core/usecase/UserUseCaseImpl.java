@@ -41,8 +41,8 @@ public class UserUseCaseImpl implements UserUseCase {
 
     @Override
     public void deleteById(String id) {
-        findUserById(id);
-        userRepository.deleteById(id);
+        User user = findUserById(id);
+        userRepository.deleteById(user.getId());
     }
 
     private User findUserById(String id) {
