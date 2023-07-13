@@ -1,9 +1,9 @@
-package br.com.example.entrypoint.controller;
+package br.com.example.entrypoints.controller;
 
 import br.com.example.core.domain.User;
 import br.com.example.core.usecase.UserUseCase;
-import br.com.example.entrypoint.dto.UserDTO;
-import br.com.example.entrypoint.mapper.UserMapper;
+import br.com.example.entrypoints.dto.UserDTO;
+import br.com.example.entrypoints.mapper.UserMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

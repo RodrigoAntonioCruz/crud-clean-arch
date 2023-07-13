@@ -1,4 +1,4 @@
-package br.com.example.dataprovider;
+package br.com.example.dataproviders;
 
 
 import br.com.example.core.dataprovider.UserRepository;

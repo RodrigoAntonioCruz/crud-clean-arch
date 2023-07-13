@@ -1,8 +1,13 @@
 package br.com.example.core.domain;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import java.io.Serial;
 import java.util.Objects;
 
 public class User {
+
+    private static final long serialVersionUID = -2466709349338262769L;
     private String id;
     private String name;
     private String email;
@@ -49,10 +54,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+        return ToStringBuilder.reflectionToString(this);
     }
 }

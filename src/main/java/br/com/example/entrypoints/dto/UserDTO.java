@@ -1,4 +1,4 @@
-package br.com.example.entrypoint.dto;
+package br.com.example.entrypoints.dto;
 
 import lombok.Builder;
 import lombok.Data;
