@@ -5,11 +5,11 @@ import br.com.example.core.domain.User;
 
 import java.util.List;
 
-public class UserUseCaseUseCaseImpl implements UserUseCase {
+public class UserUseCaseImpl implements UserUseCase {
 
     private final UserRepository userRepository;
 
-    public UserUseCaseUseCaseImpl(UserRepository userRepository) {
+    public UserUseCaseImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
