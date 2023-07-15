@@ -3,10 +3,12 @@ package br.com.example.core.domain;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.Serial;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class User {
+public class User implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = -2466709349338262769L;
     private String id;
     private String name;

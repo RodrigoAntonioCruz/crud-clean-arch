@@ -9,6 +9,6 @@ import java.util.List;
 public interface UserRepository {
     User save(User user);
     User findUserById(String id);
-    List<User> findAll();
+    List<User> findBySearch(String query);
     void deleteById(String id);
 }

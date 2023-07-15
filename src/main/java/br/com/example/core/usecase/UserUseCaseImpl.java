@@ -35,8 +35,8 @@ public class UserUseCaseImpl implements UserUseCase {
     }
 
     @Override
-    public List<User> findAll() {
-        return userRepository.findAll();
+    public List<User> findBySearch(String query) {
+        return userRepository.findBySearch(query);
     }
 
     @Override

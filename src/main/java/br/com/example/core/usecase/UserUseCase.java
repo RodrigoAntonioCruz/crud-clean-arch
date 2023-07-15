@@ -12,7 +12,7 @@ public interface UserUseCase {
 
     User findById(String id);
 
-    List<User> findAll();
+    List<User> findBySearch(String query);
 
     void deleteById(String id);
 }
