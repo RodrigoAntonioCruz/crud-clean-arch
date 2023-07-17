@@ -1,7 +1,7 @@
 package br.com.example.core.usecase;
 
 import br.com.example.core.dataprovider.UserRepository;
-import br.com.example.core.domain.User;
+import br.com.example.core.entity.User;
 
 import java.util.List;
 
@@ -46,10 +46,7 @@ public class UserUseCaseImpl implements UserUseCase {
     }
 
     private User findUserById(String id) {
-        User user = userRepository.findUserById(id);
-        if (user == null) {
-            throw new RuntimeException("User not found");
-        }
-        return  user;
+        return userRepository.findUserById(id)
+                .orElseThrow(UserNotFoundException::new);
     }
 }

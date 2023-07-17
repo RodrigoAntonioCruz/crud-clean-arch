@@ -23,12 +23,10 @@ public class OpenApiConfig {
           return new OpenAPI()
                   .components(new Components())
                   .info(new Info()
-                  .title("Wishlists")
-                  .description("API responsável por gerenciar as informações de Wishlists")
+                  .title("Usuários")
+                  .description("API responsável por gerenciar as informações de Usuários")
                   .version(environment.getAppVersion()))
-                  .tags(List.of(new Tag().name("Products").description("Endpoints responsáveis por gerenciar as informações dos produtos"),
-                                new Tag().name("Customers").description("Endpoints responsáveis por gerenciar as informações dos clientes"),
-                                new Tag().name("Wishlist").description("Endpoints responsáveis por gerenciar as informações das wishlists")
+                  .tags(List.of(new Tag().name("Usuários").description("Endpoints responsáveis por gerenciar as informações de usuários")
                   )
           );
     }

@@ -47,7 +47,7 @@
             **/util/**/*,
             **/config/**/*,
             **/*entrypoint.*,
-            **/exception/*.**,
+            **/br.com.example.exception/*.**,
             **/Application.*
         </sonar.coverage.exclusions>
     </properties>
@@ -226,7 +226,7 @@
                     <excludes>
                         <exclude>com/wishlist/config/openApi/**</exclude>
                         <exclude>com/wishlist/config/handler/**</exclude>
-                        <exclude>com/wishlist/exception/**</exclude>
+                        <exclude>com/wishlist/br.com.example.exception/**</exclude>
                         <exclude>com/wishlist/entrypoint/**</exclude>
                         <exclude>com/wishlist/dataprovider/repository/**</exclude>
                         <exclude>com/wishlist/WishlistApplication.*</exclude>

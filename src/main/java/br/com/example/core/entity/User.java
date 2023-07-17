@@ -1,4 +1,4 @@
-package br.com.example.core.domain;
+package br.com.example.core.entity;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -12,32 +12,35 @@ public class User implements Serializable {
     private static final long serialVersionUID = -2466709349338262769L;
     private String id;
     private String name;
+    private String cpf;
     private String email;
 
-    public User(String id, String name, String email) {
+    public User(String id, String name, String cpf, String email) {
         this.id = id;
         this.name = name;
+        this.cpf = cpf;
         this.email = email;
     }
 
     public String getId() { return id; }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
-
-    public void setName(String nome) {
-        this.name = nome;
+    public String getCpf() {
+        return cpf;
     }
-
     public String getEmail() {
         return email;
     }
-
+    public void setId(String id) {
+        this.id = id;
+    }
+    public void setName(String nome) {
+        this.name = nome;
+    }
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
     public void setEmail(String email) {
         this.email = email;
     }
