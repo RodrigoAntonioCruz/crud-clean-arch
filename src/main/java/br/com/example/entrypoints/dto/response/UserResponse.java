@@ -1,8 +1,9 @@
 package br.com.example.entrypoints.dto.response;
 
 import br.com.example.entrypoints.dto.UserDTO;
-import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
 @Builder

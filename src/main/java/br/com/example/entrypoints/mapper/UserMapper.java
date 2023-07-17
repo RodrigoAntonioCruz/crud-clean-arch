@@ -5,7 +5,6 @@ import br.com.example.dataproviders.data.UserData;
 import br.com.example.entrypoints.dto.request.UserRequest;
 import br.com.example.entrypoints.dto.response.UserResponse;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")

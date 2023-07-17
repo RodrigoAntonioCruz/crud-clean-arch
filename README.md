@@ -1,9 +1,10 @@
 <h3 align="center">
   API REST CLEAN ARCH
-  <img align="center" alt="Logo"  height="320" src="https://helpdev.com.br/wp-content/uploads/2020/05/Screenshot-from-2020-05-20-23-29-10.png" /><br>
+
+[//]: # (  <img align="center" alt="Logo"  height="320" src="https://helpdev.com.br/wp-content/uploads/2020/05/Screenshot-from-2020-05-20-23-29-10.png" /><br>)
 </h3>
 
-[![Build & test](https://github.com/RodrigoAntonioCruz/wishlist/actions/workflows/build.yml/badge.svg)](https://github.com/RodrigoAntonioCruz/wishlist/actions/workflows/build.yml) [![codecov](https://codecov.io/gh/RodrigoAntonioCruz/wishlist/branch/main/graph/badge.svg?token=MZC7NC3OZX)](https://codecov.io/gh/RodrigoAntonioCruz/wishlist)
+[//]: # ([![Build & test]&#40;https://github.com/RodrigoAntonioCruz/wishlist/actions/workflows/build.yml/badge.svg&#41;]&#40;https://github.com/RodrigoAntonioCruz/wishlist/actions/workflows/build.yml&#41; [![codecov]&#40;https://codecov.io/gh/RodrigoAntonioCruz/wishlist/branch/main/graph/badge.svg?token=MZC7NC3OZX&#41;]&#40;https://codecov.io/gh/RodrigoAntonioCruz/wishlist&#41;)
 
 ### Contexto
 
@@ -42,5 +43,5 @@ Para rodar esta aplicação, você deve ter instalado em seu computador:
 3. Após a execução dos processos anteriores, estarão disponíveis para acesso em seu browser os seguintes `endpoints` para teste:
    
 <a href="http://localhost:8887/v1/api/swagger-ui/index.html" target="_blank" title="Clique e navegue!">
-<img align="center" src="https://github.com/RodrigoAntonioCruz/assets/blob/main/swagger-luizalabs.png" /></a>
+<img align="center" src="https://raw.githubusercontent.com/RodrigoAntonioCruz/assets/main/users-api.png" /></a>
 
