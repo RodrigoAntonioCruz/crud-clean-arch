@@ -8,13 +8,13 @@
 
 ### Contexto
 
-Uma API REST implementando um CRUD básico, seguindo o padrão Clean Architecture.
+Uma `API REST` implementando um `CRUD` básico, seguindo o padrão Clean Architecture.
 
-A expressão "Clean Architecture" é um padrão de desenvolvimento de software que busca separar as responsabilidades e dependências entre as diferentes camadas de uma aplicação. Ele promove a modularidade, a testabilidade e a manutenibilidade do código.
+A expressão `Clean Architecture` é um padrão de desenvolvimento de software que busca separar as responsabilidades e dependências entre as diferentes camadas de uma aplicação. Ele promove a modularidade, a testabilidade e a manutenibilidade do código.
 
-Nessa API, foram aplicados os princípios da Clean Architecture para estruturar o projeto de forma organizada e escalável. A arquitetura é dividida em camadas, como a camada de entrypoints (responsável por receber as requisições HTTP e retornar as respostas), a camada de dataproviders (responsável pela interação com o banco de dados ou outras fontes de dados externas) e a camada core (onde são definidas os casos de uso e as regras de negócio).
+Nessa `API`, foram aplicados os princípios da Clean Architecture para estruturar o projeto de forma organizada e escalável. A arquitetura é dividida em camadas, como a camada de `entrypoints` (responsável por receber as requisições HTTP e retornar as respostas), a camada de `dataproviders` (responsável pela interação com o banco de dados ou outras fontes de dados externas) e a camada `core` (onde são definidas os casos de uso e as regras de negócio).
 
-O objetivo principal dessa API é oferecer operações básicas de criação, leitura, atualização e exclusão de recursos. Ela segue as práticas e convenções da arquitetura REST, permitindo que os clientes se comuniquem com a API através de requisições HTTP, como GET, POST, PUT e DELETE.
+O objetivo principal dessa API é oferecer operações básicas de criação, leitura, atualização e exclusão de recursos. Ela segue as práticas e convenções da arquitetura REST, permitindo que os clientes se comuniquem com a API através de requisições `HTTP`, como `GET`, `POST`, `PUT` e `DELETE`.
 
 Essa abordagem de desenvolvimento visa criar um código limpo, modular e de fácil manutenção, além de facilitar a integração com outras tecnologias e a evolução da aplicação ao longo do tempo.
 
