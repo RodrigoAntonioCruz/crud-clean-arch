@@ -11,10 +11,6 @@ public class DuplicatedException extends BusinessException {
 
     public DuplicatedException(String object) {
         super.setHttpStatusCode(HttpStatus.CONFLICT);
-        super.setTimestamp(super.getTimestamp());
-        super.setStatus(HttpStatus.CONFLICT.value());
-        super.setMessage(HttpStatus.CONFLICT.getReasonPhrase());
-        super.setDescription(object);
+        super.setMessage(object);
     }
-
 }

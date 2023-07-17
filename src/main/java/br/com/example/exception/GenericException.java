@@ -11,9 +11,6 @@ public class GenericException extends BusinessException {
 
 	public GenericException(String object) {
 		super.setHttpStatusCode(HttpStatus.BAD_REQUEST);
-		super.setTimestamp(super.getTimestamp());
-		super.setStatus(HttpStatus.BAD_REQUEST.value());
-		super.setMessage(HttpStatus.BAD_REQUEST.getReasonPhrase());
-		super.setDescription(object);
+		super.setMessage(object);
 	}
 }

@@ -11,9 +11,6 @@ public class NotFoundException extends BusinessException {
 	
 	public NotFoundException(String object) {
 		super.setHttpStatusCode(HttpStatus.NOT_FOUND);
-		super.setTimestamp(super.getTimestamp());
-		super.setStatus(HttpStatus.NOT_FOUND.value());
-		super.setMessage(HttpStatus.NOT_FOUND.getReasonPhrase());
-		super.setDescription(object);
+		super.setMessage(object);
 	}
 }

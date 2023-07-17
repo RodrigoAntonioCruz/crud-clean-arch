@@ -22,16 +22,16 @@ public class BusinessException extends RuntimeException {
 	private HttpStatus httpStatusCode;
 	private String timestamp;
 	private Integer status;
+	private String error;
 	private String message;
-	private String description;
 	private String path;
 
 	public BusinessExceptionBody getOnlyBody() {
 		return BusinessExceptionBody.builder()
 				.timestamp(this.timestamp)
 				.status(this.status)
+				.error(this.error)
 				.message(this.message)
-				.description(this.description)
 				.path(this.path)
 				.build();
 	}
@@ -47,9 +47,9 @@ public class BusinessException extends RuntimeException {
 
 		private Integer status;
 
-		private String message;
+		private String error;
 
-		private String description;
+		private String message;
 
 		private String path;
 
