@@ -43,98 +43,98 @@ import static java.util.Optional.ofNullable;
 public class GlobalExceptionHandlerConfig {
 
     @ExceptionHandler(value = {BusinessException.class})
-    protected ResponseEntity<Object> handleConflict(BusinessException e, HttpServletRequest request) {
-        return getException(e.getHttpStatusCode(), e.getError(), e.getMessage(), request, "BusinessException");
+    protected ResponseEntity<Object> handleBusinessException(BusinessException e, HttpServletRequest request) {
+        return getException(e.getHttpStatusCode(), e.getError(), e.getMessage(), request, Constants.LOG_METHOD_BUSINESS_EXCEPTION);
     }
 
     @ExceptionHandler({BindException.class})
-    public ResponseEntity<Object> handleException(BindException e, HttpServletRequest request) {
+    public ResponseEntity<Object> handleBindException(BindException e, HttpServletRequest request) {
         String errors = e.getBindingResult().getAllErrors().stream()
                 .map(DefaultMessageSourceResolvable::getDefaultMessage).filter(Objects::nonNull).map(String::new)
                 .collect(Collectors.joining());
-        return getException(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.getReasonPhrase(), errors, request, "BindException");
+        return getException(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.getReasonPhrase(), errors, request, Constants.LOG_METHOD_BIND_EXCEPTION);
     }
 
     @ExceptionHandler({ConstraintViolationException.class})
-    public ResponseEntity<Object> handleConstraintViolation(ConstraintViolationException e, HttpServletRequest request) {
+    public ResponseEntity<Object> handleConstraintViolationException(ConstraintViolationException e, HttpServletRequest request) {
         List<String> errors = e.getConstraintViolations().stream()
                 .map(violation -> violation.getRootBeanClass().getName() + " " + violation.getPropertyPath() + ": " + violation.getMessage()).toList();
-        return getException(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.getReasonPhrase(), errors.toString(), request, "ConstraintViolationException");
+        return getException(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.getReasonPhrase(), errors.toString(), request, Constants.LOG_METHOD_CONSTRAINT_VIOLATION_EXCEPTION);
     }
 
     @ExceptionHandler({ClientAbortException.class})
-    public ResponseEntity<Object> handleException(ClientAbortException e, HttpServletRequest request) {
-        return getException(HttpStatus.valueOf(499), HttpStatus.CONFLICT.getReasonPhrase(), ExceptionResolver.getRootException(e), request, "ClientAbortException");
+    public ResponseEntity<Object> handleClientAbortException(ClientAbortException e, HttpServletRequest request) {
+        return getException(HttpStatus.valueOf(499), HttpStatus.CONFLICT.getReasonPhrase(), ExceptionResolver.getRootException(e), request, Constants.LOG_METHOD_CLIENT_ABORT_EXCEPTION);
     }
 
     @ExceptionHandler({EmptyResultDataAccessException.class})
-    public ResponseEntity<Object> handleException(EmptyResultDataAccessException e, HttpServletRequest request) {
-        return getException(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.getReasonPhrase(), ExceptionResolver.getRootException(e), request, "EmptyResultDataAccessException");
+    public ResponseEntity<Object> handleEmptyResultDataAccessException(EmptyResultDataAccessException e, HttpServletRequest request) {
+        return getException(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.getReasonPhrase(), ExceptionResolver.getRootException(e), request, Constants.LOG_METHOD_EMPTY_RESULT_DATA_ACCESS_EXCEPTION);
     }
 
     @ExceptionHandler({UserNotFoundException.class})
-    public ResponseEntity<Object> handleException(UserNotFoundException e, HttpServletRequest request) {
-        return getException(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.getReasonPhrase(), e.getMessage(), request, "UserNotFoundException");
+    public ResponseEntity<Object> handleUserNotFoundException(UserNotFoundException e, HttpServletRequest request) {
+        return getException(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.getReasonPhrase(), e.getMessage(), request, Constants.LOG_METHOD_USER_NOT_FOUND_EXCEPTION);
     }
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<Object> validationError(HttpMessageNotReadableException e, HttpServletRequest request) {
-        return getException(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.getReasonPhrase(), e.getMostSpecificCause().getMessage(), request, "HttpMessageNotReadableException");
+    public ResponseEntity<Object> handleHttpMessageNotReadableException(HttpMessageNotReadableException e, HttpServletRequest request) {
+        return getException(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.getReasonPhrase(), e.getMostSpecificCause().getMessage(), request, Constants.LOG_METHOD_HTTP_MESSAGE_NOT_READABLE_EXCEPTION);
     }
 
     @ExceptionHandler({HttpRequestMethodNotSupportedException.class})
-    public ResponseEntity<Object> handleException(HttpRequestMethodNotSupportedException e, HttpServletRequest request) {
-        return getException(HttpStatus.METHOD_NOT_ALLOWED, HttpStatus.METHOD_NOT_ALLOWED.getReasonPhrase(), ExceptionResolver.getRootException(e), request, "HttpRequestMethodNotSupportedException");
+    public ResponseEntity<Object> handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException e, HttpServletRequest request) {
+        return getException(HttpStatus.METHOD_NOT_ALLOWED, HttpStatus.METHOD_NOT_ALLOWED.getReasonPhrase(), ExceptionResolver.getRootException(e), request, Constants.LOG_METHOD_HTTP_REQUEST_METHOD_NOT_SUPPORTED_EXCEPTION);
     }
 
     @ExceptionHandler({IOException.class})
-    public ResponseEntity<Object> handleException(IOException e, HttpServletRequest request) {
-        return getException(HttpStatus.SERVICE_UNAVAILABLE, ofNullable(e.getMessage()).orElse(e.toString()), null, request, "IOException");
+    public ResponseEntity<Object> handleIOException(IOException e, HttpServletRequest request) {
+        return getException(HttpStatus.SERVICE_UNAVAILABLE, ofNullable(e.getMessage()).orElse(e.toString()), null, request, Constants.LOG_METHOD_IO_EXCEPTION);
     }
 
     @ExceptionHandler({MissingServletRequestParameterException.class})
-    public ResponseEntity<Object> handleException(MissingServletRequestParameterException e, HttpServletRequest request) {
-        return getException(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.getReasonPhrase(), ExceptionResolver.getRootException(e), request, "MissingServletRequestParameterException");
+    public ResponseEntity<Object> handleMissingServletRequestParameterException(MissingServletRequestParameterException e, HttpServletRequest request) {
+        return getException(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.getReasonPhrase(), ExceptionResolver.getRootException(e), request, Constants.LOG_METHOD_MISSING_SERVLET_REQUEST_PARAMETER_EXCEPTION);
     }
 
     @ExceptionHandler({MethodArgumentTypeMismatchException.class})
-    public ResponseEntity<Object> handleMethodArgumentTypeMismatch(MethodArgumentTypeMismatchException exMethod, HttpServletRequest request) {
-        String error = exMethod.getName() + " should be " + Objects.requireNonNull(exMethod.getRequiredType()).getName();
-        return getException(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.getReasonPhrase(), error, request, "MethodArgumentTypeMismatchException");
+    public ResponseEntity<Object> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException exMethod, HttpServletRequest request) {
+        String error = exMethod.getName() + Constants.SHOULD_BE + Objects.requireNonNull(exMethod.getRequiredType()).getName();
+        return getException(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.getReasonPhrase(), error, request, Constants.LOG_METHOD_METHOD_ARGUMENT_TYPE_MISMATCH_EXCEPTION);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Object> validationError(MethodArgumentNotValidException e, HttpServletRequest request) {
+    public ResponseEntity<Object> handleMethodArgumentNotValidException(MethodArgumentNotValidException e, HttpServletRequest request) {
         BindingResult bindingResult = e.getBindingResult();
         List<FieldError> fieldErrors = bindingResult.getFieldErrors();
         List<String> fieldErrorDtos = fieldErrors.stream()
                 .map(f -> f.getField().concat(":").concat(Objects.requireNonNull(f.getDefaultMessage()))).map(String::new).toList();
-        return getException(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.getReasonPhrase(), fieldErrorDtos.toString(), request, "MethodArgumentNotValidException");
+        return getException(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.getReasonPhrase(), fieldErrorDtos.toString(), request, Constants.LOG_METHOD_METHOD_ARGUMENT_NOT_VALID_EXCEPTION);
     }
 
     @ExceptionHandler({Throwable.class})
-    public ResponseEntity<Object> handleException(Throwable e, HttpServletRequest request) {
+    public ResponseEntity<Object> handleThrowableException(Throwable e, HttpServletRequest request) {
         if (e.getMessage().contains(Constants.DUPLICATION_CODE)) {
             if (e.getMessage().contains(Constants.KEY_CPF)) {
-                return getException(HttpStatus.CONFLICT, HttpStatus.CONFLICT.getReasonPhrase(), Constants.DUPLICATION_CPF, request, "Throwable");
+                return getException(HttpStatus.CONFLICT, HttpStatus.CONFLICT.getReasonPhrase(), Constants.DUPLICATION_CPF, request, Constants.LOG_METHOD_THROWABLE);
             } else if (e.getMessage().contains(Constants.KEY_EMAIL)) {
-                return getException(HttpStatus.CONFLICT, HttpStatus.CONFLICT.getReasonPhrase(), Constants.DUPLICATION_EMAIL, request, "Throwable");
+                return getException(HttpStatus.CONFLICT, HttpStatus.CONFLICT.getReasonPhrase(), Constants.DUPLICATION_EMAIL, request, Constants.LOG_METHOD_THROWABLE);
             }
         }
-        return getException(HttpStatus.INTERNAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), ExceptionResolver.getRootException(e), request, "Throwable");
+        return getException(HttpStatus.INTERNAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), ExceptionResolver.getRootException(e), request, Constants.LOG_METHOD_THROWABLE);
     }
 
     @ExceptionHandler({NumberFormatException.class})
-    public ResponseEntity<Object> handleException(NumberFormatException e, HttpServletRequest request) {
-        return getException(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.getReasonPhrase(), ExceptionResolver.getRootException(e), request, "NumberFormatException");
+    public ResponseEntity<Object> handleNumberFormatException(NumberFormatException e, HttpServletRequest request) {
+        return getException(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.getReasonPhrase(), ExceptionResolver.getRootException(e), request, Constants.LOG_METHOD_NUMBER_FORMAT_EXCEPTION);
     }
 
     private String getTraceID() {
-        return ofNullable(MDC.get(Constants.TRACE_ID_KEY)).orElse("not available");
+        return ofNullable(MDC.get(Constants.TRACE_ID_KEY)).orElse(Constants.LOG_METHOD_NOT_AVAILABLE_EXCEPTION);
     }
 
     private String getCurrentTimestamp() {
         Instant timestamp = Instant.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Constants.LOG_METHOD_CURRENT_TIMESTAMP);
         return timestamp.atZone(ZoneId.systemDefault()).format(formatter);
     }
 

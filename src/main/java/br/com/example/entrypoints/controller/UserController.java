@@ -53,7 +53,7 @@ public class UserController {
             @ApiResponse(responseCode = "404", description = "Registro não encontrado"),
             @ApiResponse(responseCode = "409", description = "Duplicidade nos dados informados"),
             @ApiResponse(responseCode = "500", description = "Sistema indisponível no momento")})
-    public ResponseEntity<UserResponse> update(@Valid @PathVariable String id, @RequestBody UserRequest userRequest) {
+    public ResponseEntity<UserResponse> update(@PathVariable String id, @Valid @RequestBody UserRequest userRequest) {
         User user = UserMapper.INSTANCE.toEntity(userRequest);
         return ResponseEntity.ok(UserMapper.INSTANCE.toResponse(userUseCase.update(id, user)));
     }
@@ -77,11 +77,12 @@ public class UserController {
             @ApiResponse(responseCode = "400", description = "Inconsistência nos dados informados."),
             @ApiResponse(responseCode = "401", description = "Acesso não autorizado"),
             @ApiResponse(responseCode = "500", description = "Sistema indisponível no momento")})
-    public ResponseEntity<Page<UserResponse>> findAll(@Valid @RequestParam(value = "query", defaultValue = "") String query,
-                                                 @RequestParam(value = "page", defaultValue = "0") Integer page,
-                                                 @RequestParam(value = "linesPerPage", defaultValue = "100") Integer linesPerPage,
-                                                 @RequestParam(value = "direction", defaultValue = "ASC") String direction,
-                                                 @RequestParam(value = "orderBy", defaultValue = "id") String orderBy) {
+    public ResponseEntity<Page<UserResponse>> findAll(@Valid
+                                                      @RequestParam(value = "query", defaultValue = "") String query,
+                                                      @RequestParam(value = "page", defaultValue = "0") Integer page,
+                                                      @RequestParam(value = "linesPerPage", defaultValue = "100") Integer linesPerPage,
+                                                      @RequestParam(value = "direction", defaultValue = "ASC") String direction,
+                                                      @RequestParam(value = "orderBy", defaultValue = "id") String orderBy) {
         List<User> list = userUseCase.findBySearch(query);
         Pageable pageable = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
         Page<UserResponse> pages = PageUtils.toPage(list, pageable, list.size(), UserMapper.INSTANCE::toResponse, orderBy, UserResponse.class);
