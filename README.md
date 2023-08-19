@@ -1,5 +1,5 @@
 <h3 align="center">
-  API REST CLEAN ARCH SIMPLE
+  API REST CLEAN ARCHITECTURE SIMPLE
 
 [//]: # (  <img align="center" alt="Logo"  height="320" src="https://helpdev.com.br/wp-content/uploads/2020/05/Screenshot-from-2020-05-20-23-29-10.png" /><br>)
 </h3>
