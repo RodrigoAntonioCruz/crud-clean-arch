@@ -27,8 +27,6 @@ Essa abordagem de desenvolvimento visa criar um código limpo, modular e de fác
   <li> Docker
   <li> MongoDB
   <li> Swagger
-  <li> JUnit
-  <li> Cucumber
 </ul>
 
 ### Requisitos
