@@ -7,12 +7,12 @@ import jakarta.inject.Named;
 
 @Named
 @ApplicationScoped
-public class DeleteByIdDeleteByIdUserUseCaseImpl implements DeleteByIdUserUseCase {
+public class DeleteByIdUserUseCaseImpl implements DeleteByIdUserUseCase {
     private final UserRepository userRepository;
     private final FindByIdUserUseCaseImpl findByIdUserUseCase;
 
     @Inject
-    public DeleteByIdDeleteByIdUserUseCaseImpl(FindByIdUserUseCaseImpl findByIdUserUseCase, final UserRepository userRepository) {
+    public DeleteByIdUserUseCaseImpl(FindByIdUserUseCaseImpl findByIdUserUseCase, final UserRepository userRepository) {
         this.findByIdUserUseCase = findByIdUserUseCase;
         this.userRepository = userRepository;
     }
