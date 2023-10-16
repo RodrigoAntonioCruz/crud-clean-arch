@@ -47,7 +47,7 @@ Para rodar esta aplicação, você deve ter instalado em seu computador:
 </ul>
 
 3. Após a execução dos processos anteriores, estarão disponíveis para acesso em seu browser os seguintes `endpoints` para teste:
-   
+
 <a href="http://localhost:8887/v1/api/swagger-ui/index.html" target="_blank" title="Clique e navegue!">
 <img align="center" src="https://raw.githubusercontent.com/RodrigoAntonioCruz/assets/main/users-api.png" /></a>
 
