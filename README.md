@@ -1,4 +1,3 @@
-
 <h3 align="center">
   
   CRUD CLEAN ARCHITECTURE
@@ -8,6 +7,8 @@
 </h3>
 
 [//]: # ([![Build & test]&#40;https://github.com/RodrigoAntonioCruz/wishlist/actions/workflows/build.yml/badge.svg&#41;]&#40;https://github.com/RodrigoAntonioCruz/wishlist/actions/workflows/build.yml&#41; [![codecov]&#40;https://codecov.io/gh/RodrigoAntonioCruz/wishlist/branch/main/graph/badge.svg?token=MZC7NC3OZX&#41;]&#40;https://codecov.io/gh/RodrigoAntonioCruz/wishlist&#41;)
+
+### Contexto
 
 Uma `API REST` implementando um `CRUD` básico, seguindo o padrão Clean Architecture.
 
