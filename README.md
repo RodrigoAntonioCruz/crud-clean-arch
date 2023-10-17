@@ -1,12 +1,10 @@
 <h3 align="center">
-  API REST CLEAN ARCHITECTURE SIMPLE
+  API REST CRUD CLEAN ARCHITECTURE
 
 [//]: # (  <img align="center" alt="Logo"  height="320" src="https://helpdev.com.br/wp-content/uploads/2020/05/Screenshot-from-2020-05-20-23-29-10.png" /><br>)
 </h3>
 
 [//]: # ([![Build & test]&#40;https://github.com/RodrigoAntonioCruz/wishlist/actions/workflows/build.yml/badge.svg&#41;]&#40;https://github.com/RodrigoAntonioCruz/wishlist/actions/workflows/build.yml&#41; [![codecov]&#40;https://codecov.io/gh/RodrigoAntonioCruz/wishlist/branch/main/graph/badge.svg?token=MZC7NC3OZX&#41;]&#40;https://codecov.io/gh/RodrigoAntonioCruz/wishlist&#41;)
-
-### Contexto
 
 Uma `API REST` implementando um `CRUD` básico, seguindo o padrão Clean Architecture.
 
