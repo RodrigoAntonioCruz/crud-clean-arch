@@ -1,6 +1,9 @@
 package com.example.core;
 
 
+import com.example.core.utils.CPF;
+import com.example.core.utils.Constants;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
@@ -40,8 +43,30 @@ public class User implements Serializable {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String email) { this.email = email; }
+
+    public void validate() {
+        validateFields(null, name, Constants.NAME_NOT_NULL, null);
+        validateFields(Constants.KEY_CPF, cpf, Constants.CPF_NOT_NULL, Constants.CPF_INVALID);
+        validateFields(Constants.KEY_EMAIL, email, Constants.EMAIL_NOT_NULL, Constants.EMAIL_INVALID);
+    }
+
+    private void validateFields(String field, String value, String messageNotNull, String messageInvalid) {
+        if (value == null || value.isEmpty()) {
+            throw new IllegalArgumentException(messageNotNull);
+        }
+
+        if (Constants.KEY_EMAIL.equals(field)) {
+            if (!value.matches(Constants.REGEX)) {
+                throw new IllegalArgumentException(messageInvalid);
+            }
+        }
+
+        if (Constants.KEY_CPF.equals(field)) {
+            if (!CPF.isValid(value)) {
+                throw new IllegalArgumentException(messageInvalid);
+            }
+        }
     }
 
     @Override

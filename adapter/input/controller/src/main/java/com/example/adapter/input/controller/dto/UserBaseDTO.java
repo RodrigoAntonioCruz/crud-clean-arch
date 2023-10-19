@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -14,6 +15,7 @@ import java.io.Serial;
 import java.io.Serializable;
 
 @Data
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 public abstract class UserBaseDTO implements Serializable {

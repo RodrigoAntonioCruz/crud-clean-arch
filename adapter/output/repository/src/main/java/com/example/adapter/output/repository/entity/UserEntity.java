@@ -1,5 +1,6 @@
 package com.example.adapter.output.repository.entity;
 
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -9,6 +10,7 @@ import java.io.Serial;
 import java.io.Serializable;
 
 @Data
+@Builder
 @Document(collection = "users")
 public class UserEntity implements Serializable {
 

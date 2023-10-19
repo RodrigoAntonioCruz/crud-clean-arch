@@ -1,69 +1,71 @@
 package com.example.adapter.output.repository;
 
 
-import com.example.adapter.output.repository.entity.UserEntity;
 import com.example.adapter.output.repository.mapper.UserOutputMapper;
+import com.example.adapter.output.repository.utils.Constants;
 import com.example.core.User;
 import com.example.core.port.UserRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
-
+@Slf4j
 @Component
 @AllArgsConstructor
 public class UserRepositoryImpl implements UserRepository {
+    private final UserOutputMapper mapper;
 
-    private final MongoTemplate mongoTemplate;
+    private final UserEntityRepository repository;
 
     @Override
     public User save(User user) {
-        UserEntity entity = UserOutputMapper.INSTANCE.toUserData(user);
-        entity = mongoTemplate.save(entity);
-        return UserOutputMapper.INSTANCE.toDomain(entity);
+
+        log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_METHOD + Constants.LOG_KEY_ENTITY, "Início da persistência de um usuário ", Constants.LOG_METHOD_SAVE, user);
+
+        var entity = mapper.toUserEntity(user);
+
+        entity = repository.save(entity);
+
+        log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_METHOD + Constants.LOG_KEY_ENTITY, "Fim da persistência de um usuário ", Constants.LOG_METHOD_SAVE, entity);
+
+        return mapper.toDomain(entity);
     }
 
     @Override
     public Optional<User> findUserById(String id) {
-        UserEntity entity = mongoTemplate.findById(id, UserEntity.class);
-        return Optional.ofNullable(UserOutputMapper.INSTANCE.toDomain(entity));
+
+        log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_METHOD + Constants.LOG_KEY_ENTITY_ID, "Início da busca de um usuário por id ", Constants.LOG_METHOD_FIND_USER_BY_ID, id);
+
+        var entity = repository.findById(id);
+
+        log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_METHOD + Constants.LOG_KEY_ENTITY, "Fim da busca de um usuário por id ", Constants.LOG_METHOD_FIND_USER_BY_ID, entity);
+
+        return entity.map(mapper::toDomain);
     }
 
     @Override
     public List<User> findByFilter(String query) {
-        Criteria criteria = new Criteria();
 
-        List<java.lang.reflect.Field> fields = Arrays.asList(UserEntity.class.getDeclaredFields());
-        List<Criteria> fieldCriteria = fields.stream()
-                .filter(field -> field.getType().equals(String.class))
-                .map(field -> field.getName().equals("id")
-                        ? Criteria.where(field.getName()).is(query)
-                        : Criteria.where(field.getName()).regex("^" + Pattern.quote(query), "i"))
-                .toList();
+        log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_METHOD + Constants.LOG_KEY_ENTITY_ID, "Início da busca da lista de usuários por filtros ", Constants.LOG_METHOD_FIND_BY_FILTER, query);
 
-        criteria.orOperator(fieldCriteria.toArray(new Criteria[0]));
+        var userEntityList = repository.findByFilter(query);
 
-        Query searchQuery = new Query(criteria);
+        log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_METHOD + Constants.LOG_KEY_ENTITY, "Fim da busca da lista de usuários por filtros ", Constants.LOG_METHOD_FIND_BY_FILTER, userEntityList);
 
-        List<UserEntity> results = mongoTemplate.find(searchQuery, UserEntity.class);
-
-        return results.stream()
-                .map(UserOutputMapper.INSTANCE::toDomain)
-                .collect(Collectors.toList());
+        return userEntityList.stream().map(mapper::toDomain).toList();
     }
 
     @Override
     public void deleteById(String id) {
-        Query query = new Query(Criteria.where("id").is(id));
-        mongoTemplate.remove(query, UserEntity.class);
+
+        log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_METHOD + Constants.LOG_KEY_ENTITY_ID, "Início da exclusão de um usuário ", Constants.LOG_METHOD_DELETE_BY_ID, id);
+
+        repository.deleteById(id);
+
+        log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_METHOD + Constants.LOG_KEY_ENTITY_ID, "Fim da exclusão de um usuário ", Constants.LOG_METHOD_DELETE_BY_ID, id);
     }
 }
 

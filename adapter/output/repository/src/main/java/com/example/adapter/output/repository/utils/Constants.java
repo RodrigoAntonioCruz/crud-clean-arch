@@ -1,4 +1,4 @@
-package com.example.adapter.input.controller.utils;
+package com.example.adapter.output.repository.utils;
 
 
 public class Constants {
@@ -16,6 +16,8 @@ public class Constants {
     public static final String LOG_KEY_ENTITY = "entity=\"{}\" ";
     public static final String LOG_KEY_ENTITY_ID = "entityId={} ";
     public static final String LOG_KEY_EVENT = "event={} ";
+
+    public static final String LOG_KEY_FILTER = "filter={} ";
     public static final String LOG_KEY_DESCRIPTION = "description=\"{}\" ";
     public static final String LOG_KEY_HTTP_CODE = "httpCode={} ";
 
@@ -25,8 +27,8 @@ public class Constants {
      * */
     public static final Object LOG_METHOD_FIND_BY_FILTER = "findByFilter";
     public static final Object LOG_METHOD_DELETE_BY_ID = "deleteById";
-    public static final String LOG_METHOD_FIND_BY_ID = "findById";
-    public static final String LOG_METHOD_CREATE = "create";
+    public static final String LOG_METHOD_FIND_USER_BY_ID = "findUserById";
+    public static final String LOG_METHOD_SAVE = "save";
     public static final String LOG_METHOD_UPDATE = "update";
     public static final String LOG_METHOD_BUSINESS_EXCEPTION = "BusinessException";
     public static final String LOG_METHOD_BIND_EXCEPTION = "BindException";
