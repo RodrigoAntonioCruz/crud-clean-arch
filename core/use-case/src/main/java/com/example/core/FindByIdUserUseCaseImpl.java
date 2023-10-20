@@ -17,8 +17,7 @@ public class FindByIdUserUseCaseImpl implements FindByIdUserUseCase {
     }
 
     @Override
-    public User findById(String id) {
-        return userRepository.findUserById(id)
-                .orElseThrow(UserNotFoundException::new);
+    public User findById(final String id) {
+        return userRepository.findUserById(id).orElseThrow(UserNotFoundException::new);
     }
 }
