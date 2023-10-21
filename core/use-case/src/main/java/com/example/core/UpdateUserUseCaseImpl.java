@@ -27,10 +27,10 @@ public class UpdateUserUseCaseImpl implements UpdateUserUseCase {
 
         user.validate();
 
-        throwExceptionIf(userRepository.findByFilter(user.getCpf()).stream().findFirst().isPresent(),
+        throwExceptionIf(userRepository.findByFilter(user.getCpf()).stream().anyMatch(u -> !u.getId().equals(id)),
                 new DuplicateRequestException(Constants.DUPLICATION_CPF));
 
-        throwExceptionIf(userRepository.findByFilter(user.getEmail()).stream().findFirst().isPresent(),
+        throwExceptionIf(userRepository.findByFilter(user.getEmail()).stream().anyMatch(u -> !u.getId().equals(id)),
                 new DuplicateRequestException(Constants.DUPLICATION_EMAIL));
 
         existingUser.setId(id);
