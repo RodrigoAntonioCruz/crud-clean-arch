@@ -74,14 +74,14 @@ public class UserDomainTest extends FactoryBase {
     @Test
     @DisplayName("Deve lançar exceção quando o e-mail é inválido")
     public void shouldThrowExceptionWhenEmailIsInvalid() {
-        user.setEmail("email_invalid.com");
+        user.setEmail(INVALID_EMAIL);
         validateException(Constants.EMAIL_INVALID);
     }
 
     @Test
     @DisplayName("Deve lançar exceção quando o CPF é inválido")
     public void shouldThrowExceptionWhenCPFIsInvalid() {
-        user.setCpf("000448723432");
+        user.setCpf(INVALID_USER_CPF);
         validateException(Constants.CPF_INVALID);
     }
 

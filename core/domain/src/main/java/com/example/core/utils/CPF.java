@@ -1,13 +1,13 @@
 package com.example.core.utils;
 
 public class CPF {
-    private static final int[] weightSsn = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2};
+    private static final int[] WEIGHT_SSN = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2};
 
     private static int calculate(final String str) {
         int sum = 0;
         for (int i = str.length() - 1, digit; i >= 0; i--) {
             digit = Integer.parseInt(str.substring(i, i + 1));
-            sum += digit * weightSsn[weightSsn.length - str.length() + i];
+            sum += digit * WEIGHT_SSN[WEIGHT_SSN.length - str.length() + i];
         }
         sum = 11 - sum % 11;
         return sum > 9 ? 0 : sum;

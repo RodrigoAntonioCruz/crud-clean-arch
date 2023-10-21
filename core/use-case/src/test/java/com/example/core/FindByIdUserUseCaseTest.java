@@ -38,13 +38,11 @@ public class FindByIdUserUseCaseTest extends FactoryBase {
     @Test
     @DisplayName("Deve encontrar usuário por ID")
     public void shouldFindUserById() {
-
         when(repository.findUserById(USER_ID)).thenReturn(Optional.ofNullable(user));
+        var response = findByIdUserUseCase.findById(USER_ID);
 
-        var result = findByIdUserUseCase.findById(USER_ID);
-
-        assertThat(result).isNotNull();
-        assertThat(result.getName()).isEqualTo(user.getName());
+        assertThat(response).isNotNull();
+        assertThat(response.getName()).isEqualTo(user.getName());
     }
 
     @Test

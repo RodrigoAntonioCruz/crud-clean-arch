@@ -4,7 +4,6 @@ package com.example.core;
 import com.example.core.factory.FactoryBase;
 import com.example.core.port.UserRepository;
 import com.example.core.utils.Constants;
-import com.example.core.utils.FieldsUtils;
 import com.sun.jdi.request.DuplicateRequestException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -14,12 +13,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Collections;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -29,8 +26,6 @@ public class CreateUserUseCaseTest extends FactoryBase {
     private CreateUserUseCaseImpl createUserUseCase;
     @Mock
     private UserRepository repository;
-    @Mock
-    private FieldsUtils fieldsUtils;
 
     private User user;
 
@@ -42,19 +37,28 @@ public class CreateUserUseCaseTest extends FactoryBase {
     @Test
     @DisplayName("Deve criar usuário com sucesso")
     public void shouldCreateUserSuccessfully() {
-        when(repository.save(getUser())).thenReturn(getUser());
+        when(repository.save(user)).thenReturn(user);
+        var response = createUserUseCase.create(user);
 
-        doNothing().when(fieldsUtils).validateDuplicity(anyString(), anyString());
-        var user = createUserUseCase.create(getUser());
+        assertEquals(user, response);
+        verify(repository, times(1)).save(user);
+    }
 
-        assertEquals(getUser(), user);
-        verify(repository, times(1)).save(getUser());
+    @Test
+    @DisplayName("Deve lançar exceção ao tentar atualizar com CPF inválido")
+    public void shouldThrowExceptionWhenUpdatingWithInvalidCPF() {
+        user.setCpf(INVALID_USER_CPF);
+
+        assertThatThrownBy(() -> createUserUseCase.create(user))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Constants.CPF_INVALID);
     }
 
     @Test
     @DisplayName("Deve lançar exceção quando o nome é nulo")
     public void shouldThrowExceptionWhenNameIsNull() {
         user.setName(null);
+
         assertThatThrownBy(() -> createUserUseCase.create(user))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Constants.NAME_NOT_NULL);
@@ -64,6 +68,7 @@ public class CreateUserUseCaseTest extends FactoryBase {
     @DisplayName("Deve lançar exceção quando o CPF é nulo")
     public void shouldThrowExceptionWhenCPFIsNull() {
         user.setCpf(null);
+
         assertThatThrownBy(() -> createUserUseCase.create(user))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Constants.CPF_NOT_NULL);
@@ -73,6 +78,7 @@ public class CreateUserUseCaseTest extends FactoryBase {
     @DisplayName("Deve lançar exceção quando o e-mail é nulo")
     public void shouldThrowExceptionWhenEmailIsNull() {
         user.setEmail(null);
+
         assertThatThrownBy(() -> createUserUseCase.create(user))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Constants.EMAIL_NOT_NULL);
@@ -81,10 +87,9 @@ public class CreateUserUseCaseTest extends FactoryBase {
     @Test
     @DisplayName("Deve lançar exceção quando o CPF estiver duplicado")
     public void shouldThrowExceptionWhenCpfIsDuplicated() {
-        doThrow(new DuplicateRequestException(Constants.DUPLICATION_CPF))
-                .when(fieldsUtils).validateDuplicity(eq(user.getCpf()), eq(Constants.DUPLICATION_CPF));
+        when(repository.findByFilter(getUpdateUserCPF().getCpf())).thenReturn(Collections.singletonList(getUpdateUserCPF()));
 
-        assertThatThrownBy(() -> createUserUseCase.create(user))
+        assertThatThrownBy(() -> createUserUseCase.create(getUpdateUserCPF()))
                 .isInstanceOf(DuplicateRequestException.class)
                 .hasMessage(Constants.DUPLICATION_CPF);
     }
@@ -92,13 +97,10 @@ public class CreateUserUseCaseTest extends FactoryBase {
     @Test
     @DisplayName("Deve lançar exceção quando o e-mail estiver duplicado")
     public void shouldThrowExceptionWhenEmailIsDuplicated() {
+        when(repository.findByFilter(getUpdateUserEmail().getEmail())).thenReturn(Collections.singletonList(getUpdateUserEmail()));
+        when(repository.findByFilter(getUpdateUserEmail().getCpf())).thenReturn(Collections.emptyList());
 
-        doNothing().when(fieldsUtils).validateDuplicity(eq(user.getCpf()), anyString());
-
-        doThrow(new DuplicateRequestException(Constants.DUPLICATION_EMAIL))
-                .when(fieldsUtils).validateDuplicity(eq(user.getEmail()), eq(Constants.DUPLICATION_EMAIL));
-
-        assertThatThrownBy(() -> createUserUseCase.create(user))
+        assertThatThrownBy(() -> createUserUseCase.create(getUpdateUserEmail()))
                 .isInstanceOf(DuplicateRequestException.class)
                 .hasMessage(Constants.DUPLICATION_EMAIL);
     }

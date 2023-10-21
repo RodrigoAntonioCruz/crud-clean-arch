@@ -33,13 +33,12 @@ public class FindByFilterUserUseCaseTest extends FactoryBase {
     @Test
     @DisplayName("Deve encontrar usuários por filtro")
     public void shouldFindUsersByFilter() {
-
         when(repository.findByFilter(FILTER)).thenReturn(List.of(user));
+        var response = findByFilterUserUseCase.findByFilter(FILTER);
 
-        var result = findByFilterUserUseCase.findByFilter(FILTER);
+        assertThat(response).isNotNull();
+        assertThat(response).hasSize(1);
 
-        assertThat(result).isNotNull();
-        assertThat(result).hasSize(1);
-        assertThat(result.get(0).getName().substring(0, 3)).isEqualTo(FILTER);
+        assertThat(response.get(0).getName().substring(0, 3)).isEqualTo(FILTER);
     }
 }

@@ -6,6 +6,7 @@ import com.example.adapter.input.controller.exception.BusinessException;
 import com.example.adapter.input.controller.exception.ExceptionResolver;
 import com.example.adapter.input.controller.utils.Constants;
 import com.example.core.exception.UserNotFoundException;
+import com.sun.jdi.request.DuplicateRequestException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
@@ -113,14 +114,17 @@ public class GlobalExceptionHandlerConfig {
 
     @ExceptionHandler({Throwable.class})
     public ResponseEntity<Object> handleThrowableException(Throwable e, HttpServletRequest request) {
-        if (e.getMessage().contains(Constants.DUPLICATION_CODE)) {
-            if (e.getMessage().contains(Constants.KEY_CPF)) {
-                return getException(HttpStatus.CONFLICT, HttpStatus.CONFLICT.getReasonPhrase(), Constants.DUPLICATION_CPF, request, Constants.LOG_METHOD_THROWABLE);
-            } else if (e.getMessage().contains(Constants.KEY_EMAIL)) {
-                return getException(HttpStatus.CONFLICT, HttpStatus.CONFLICT.getReasonPhrase(), Constants.DUPLICATION_EMAIL, request, Constants.LOG_METHOD_THROWABLE);
-            }
-        }
         return getException(HttpStatus.INTERNAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), ExceptionResolver.getRootException(e), request, Constants.LOG_METHOD_THROWABLE);
+    }
+
+    @ExceptionHandler({DuplicateRequestException.class})
+    public ResponseEntity<Object> handleDuplicateRequestException(DuplicateRequestException e, HttpServletRequest request) {
+        return getException(HttpStatus.CONFLICT, HttpStatus.CONFLICT.getReasonPhrase(), e.getMessage(), request, Constants.LOG_METHOD_DUPLICATE);
+    }
+
+    @ExceptionHandler({IllegalArgumentException.class})
+    public ResponseEntity<Object> handleIllegalArgumentException(IllegalArgumentException e, HttpServletRequest request) {
+        return getException(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.getReasonPhrase(), e.getMessage(), request, Constants.LOG_METHOD_ILLEGAL_ARGUMENT);
     }
 
     @ExceptionHandler({NumberFormatException.class})

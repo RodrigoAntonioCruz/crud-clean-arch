@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.times;
@@ -53,8 +54,10 @@ public class UserRepositoryTest extends FactoryBase {
     @DisplayName("Deve retornar o usuário ao encontrar um usuário por ID")
     public void shouldReturnUserWhenFindingUserById() {
         findUserByIdRepository();
+        Optional<User> userOptional = repository.findUserById(USER_ID);
 
-        responseUser(repository.findUserById(USER_ID).get());
+        assertTrue(userOptional.isPresent());
+        responseUser(userOptional.get());
 
         verify(userEntityRepository, times(1)).findById(USER_ID);
     }
