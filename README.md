@@ -3,7 +3,9 @@
   CRUD CLEAN ARCHITECTURE <br>
 </h3>
 
-[//]: # ([![Build & test](https://github.com/RodrigoAntonioCruz/crud-clean-architecture/actions/workflows/build.yml/badge.svg)](https://github.com/RodrigoAntonioCruz/crud-clean-architecture/actions/workflows/build.yml&#41; [![codecov](https://codecov.io/gh/RodrigoAntonioCruz/crud-clean-architecture/graph/badge.svg?token=oXUNgmqgIm)](https://codecov.io/gh/RodrigoAntonioCruz/crud-clean-architecture)
+[![Build & test](https://github.com/RodrigoAntonioCruz/crud-clean-architecture/actions/workflows/build.yml/badge.svg)](https://github.com/RodrigoAntonioCruz/crud-clean-architecture/actions/workflows/build.yml)
+
+[![codecov](https://codecov.io/gh/RodrigoAntonioCruz/crud-clean-architecture/graph/badge.svg?token=oXUNgmqgIm)](https://codecov.io/gh/RodrigoAntonioCruz/crud-clean-architecture)
 
 ### Contexto
 
