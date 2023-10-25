@@ -36,6 +36,10 @@ Essa abordagem de desenvolvimento visa criar um código limpo, modular e de fác
 Para rodar esta aplicação, você deve ter instalado em seu computador:
 
 <ul>  
+   <li><a href="https://www.oracle.com/java/technologies/javase/jdk17-readme-downloads.html" target="_blank">Java 17</a>
+
+   <li><a href="https://maven.apache.org/download.cgi" target="_blank">Maven 3.9.5</a>
+
    <li><a href="https://docs.docker.com/get-started/" target="_blank">Docker</a>
 </ul>
 
@@ -45,8 +49,17 @@ Para rodar esta aplicação, você deve ter instalado em seu computador:
 
 2. Navegue até a raíz do diretório do projeto, abra o `terminal e execute o comando:`
 <ul>
+   <li> sudo mvn clean package
+</ul>
+
+   <img align="center" src="https://raw.githubusercontent.com/RodrigoAntonioCruz/assets/main/mvn-clean-pkg.png" />
+
+<ul>
    <li> sudo docker-compose up -d
 </ul>
+
+<img align="center" src="https://raw.githubusercontent.com/RodrigoAntonioCruz/assets/main/docker-compose.png" />
+
 
 3. Após a execução dos processos anteriores, estarão disponíveis para acesso em seu browser os seguintes `endpoints` para teste:
 
