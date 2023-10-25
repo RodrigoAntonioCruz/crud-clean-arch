@@ -12,13 +12,25 @@
 
 Uma `API REST` implementando um `CRUD` básico, seguindo o padrão Clean Architecture.
 
-A expressão `Clean Architecture` é um padrão de desenvolvimento de software que busca separar as responsabilidades e dependências entre as diferentes camadas de uma aplicação. Ele promove a modularidade, a testabilidade e a manutenibilidade do código.
+## Estrutura do Projeto
 
-Nessa `API`, foram aplicados os princípios da Clean Architecture para estruturar o projeto de forma organizada e escalável. A arquitetura é dividida em camadas, como a camada de `entrypoints` (responsável por receber as requisições HTTP e retornar as respostas), a camada de `dataproviders` (responsável pela interação com o banco de dados ou outras fontes de dados externas) e a camada `core` (onde são definidas os casos de uso e as regras de negócio).
+O projeto está dividido em diferentes módulos e pacotes, seguindo os princípios da arquitetura limpa. Aqui está uma visão geral da estrutura do projeto:
 
-O objetivo principal dessa API é oferecer operações básicas de criação, leitura, atualização e exclusão de recursos. Ela segue as práticas e convenções da arquitetura REST, permitindo que os clientes se comuniquem com a API através de requisições `HTTP`, como `GET`, `POST`, `PUT` e `DELETE`.
+### Módulo "Core"
 
-Essa abordagem de desenvolvimento visa criar um código limpo, modular e de fácil manutenção, além de facilitar a integração com outras tecnologias e a evolução da aplicação ao longo do tempo.
+- **`core/domain`**: Este pacote contém as classes de domínio do projeto. São classes que representam as entidades e objetos de negócios do sistema.
+
+- **`core/use-case`**: Neste pacote, você encontrará os casos de uso ou interações principais da aplicação. Os casos de uso definem as regras de negócios e a lógica da aplicação.
+
+### Módulo "Adapter"
+
+- **`adapter/input`**: Os adaptadores de entrada são responsáveis por receber as solicitações do mundo exterior. Isso pode incluir controladores REST, classes de serialização, entre outros.
+
+- **`adapter/output`**: Os adaptadores de saída são responsáveis por fornecer saídas para o mundo exterior. Isso pode incluir repositórios de dados, serviços externos, armazenamento em banco de dados, entre outros.
+
+### Módulo "App"
+
+- **`app/spring-app`**: Este é o módulo de aplicação da sua arquitetura. Aqui, você pode encontrar a configuração e componentes específicos do Spring Boot, como a classe principal de inicialização.
 
 <h4>Tecnologias</h4>
 <ul>
