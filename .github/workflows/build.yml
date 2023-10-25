@@ -28,10 +28,13 @@ jobs:
       - name: Upload coverage report
         uses: actions/upload-artifact@v2
         with:
-          files: ./core/domain/target/site/jacoco/jacoco.xml,
-                 ./core/use-case/target/site/jacoco/jacoco.xml,
-                 ./adapter/input/controller/target/site/jacoco/jacoco.xml,
-                 ./adapter/output/repository/target/site/jacoco/jacoco.xml
+          name: artifact
+          path: |
+            ./core/domain/target/site/jacoco
+            ./core/use-case/target/site/jacoco
+            ./adapter/input/controller/target/site/jacoco
+            ./adapter/output/repository/target/site/jacoco
+          if-no-files-found: warn
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
