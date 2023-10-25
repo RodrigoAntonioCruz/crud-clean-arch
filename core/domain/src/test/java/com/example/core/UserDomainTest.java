@@ -11,13 +11,19 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 @ExtendWith(MockitoExtension.class)
 public class UserDomainTest extends FactoryBase {
     private User user;
+    private User user1;
 
     @BeforeEach
     public void setUp() {
         user = getUser();
+
+        user1 = getUser1();
     }
 
     @Test
@@ -83,6 +89,38 @@ public class UserDomainTest extends FactoryBase {
     public void shouldThrowExceptionWhenCPFIsInvalid() {
         user.setCpf(INVALID_USER_CPF);
         validateException(Constants.CPF_INVALID);
+    }
+
+    @Test
+    @DisplayName("Deve testar a igualdade entre dois IDS")
+    public void  shouldTestEqualityBetweenTwoIDS() {
+        user.setId(USER_ID);
+        assertNotNull(user);
+    }
+    @Test
+    @DisplayName("Deve testar a igualdade entre dois usuários com o mesmo ID")
+    public void  shouldTestEqualityBetweenTwoUsersWithSameID() {
+        User user1 = getUser1();
+        User user2 = getUser1();
+        User user3 = getUser2();
+
+        assertEquals(user1, user2);
+        assertNotEquals(user1, user3);
+    }
+
+    @Test
+    @DisplayName("Deve testar o hashCode de dois usuários com o mesmo ID")
+    public void shouldTestHashCodeBetweenTwoUsersWithSameID() {
+        User user1 = getUser1();
+        User user2 = getUser1();
+
+        assertEquals(user1.hashCode(), user2.hashCode());
+    }
+
+    @Test
+    @DisplayName("Deve testar a representação em string de um usuário")
+    public void shouldTestTheStringRepresentationOfUser() {
+        assertEquals(TO_STRING, user1.toString());
     }
 
     private void validateException(String message) {
