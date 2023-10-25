@@ -30,10 +30,8 @@ jobs:
         with:
           files: ./core/domain/target/site/jacoco/jacoco.xml,
                  ./core/use-case/target/site/jacoco/jacoco.xml,
-                 ./adapter/input/spring-rest-controller/target/site/jacoco/jacoco.xml,
-                 ./adapter/output/jpa-postgres-repository/target/site/jacoco/jacoco.xml,
-                 ./adapter/output/product-rest-client/target/site/jacoco/jacoco.xml,
-                 ./adapter/output/redis-cache/target/site/jacoco/jacoco.xml
+                 ./adapter/input/controller/target/site/jacoco/jacoco.xml,
+                 ./adapter/output/repository/target/site/jacoco/jacoco.xml
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
